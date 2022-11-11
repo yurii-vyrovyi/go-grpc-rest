@@ -1,0 +1,104 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "service.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "GrpcRestService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/sayhello": {
+      "post": {
+        "operationId": "GrpcRestService_SayHello",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1SayHelloResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1SayHelloRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GrpcRestService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1SayHelloRequest": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "intValue": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "v1SayHelloResponse": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

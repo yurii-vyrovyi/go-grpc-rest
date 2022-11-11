@@ -1,0 +1,9 @@
+log:
+  level: debug
+  pretty: false
+
+grpc:
+  host: localhost:8080
+  gateway-port: 8085
+  gateway-timeout: 10s
+  rest-host: localhost:8090

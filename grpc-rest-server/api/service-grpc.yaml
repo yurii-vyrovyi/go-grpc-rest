@@ -1,0 +1,13 @@
+type: google.api.Service
+config_version: 3
+name: grpc_rest.example.com
+title: GRPC REST Server
+
+apis:
+  - name: grpc_rest.GrpcRestService
+
+http:
+  rules:
+    - selector: grpc_rest.v1.GrpcRestService.SayHello
+      post: /v1/sayhello
+      body: "*"
