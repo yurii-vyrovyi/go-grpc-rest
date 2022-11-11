@@ -1,0 +1,77 @@
+swagger: "2.0"
+info:
+  title: Sample API
+  description: API description in Markdown.
+  version: 1.0.0
+host: localhost:8090
+
+paths:
+  /v2/sayhello:
+    post:
+      summary: sends hello object with a binary attachments
+      consumes:
+        - multipart/form-data
+      parameters:
+
+        # json object
+        - in: formData
+          name: object
+          type: value
+          description: This is request object
+          schema:
+            $ref: '#/definitions/api.SayHelloRequest'
+
+        # binary file
+        - in: formData
+          name: attachment
+          type: file
+          description: The file to upload.
+
+      produces:
+        "application/json"
+
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/api.SayHelloResponse'
+
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+              - type: object
+              - properties:
+                  meta:
+                    allOf:
+                      - type: object
+                      - properties:
+                          errorMessage:
+                            type: string
+                        type: object
+                type: object
+
+definitions:
+
+  api.SayHelloRequest:
+    properties:
+      binary_data:
+        items:
+          type: integer
+        type: array
+      description:
+        type: string
+      file_name:
+        type: string
+      int_value:
+        type: integer
+      title:
+        type: string
+    type: object
+
+  api.SayHelloResponse:
+    properties:
+      response:
+        type: string
+    type: object
+

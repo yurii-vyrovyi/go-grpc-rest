@@ -1,0 +1,12 @@
+log:
+  level: debug
+  pretty: false
+
+service:
+  store-location: ./incoming-data
+
+grpc:
+  host: localhost:8080
+  gateway-port: 8085
+  gateway-timeout: 10s
+  rest-host: localhost:8090
