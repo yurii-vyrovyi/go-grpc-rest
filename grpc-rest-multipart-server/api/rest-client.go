@@ -147,7 +147,7 @@ func handleResponse(resp *http.Response) (*SayHelloResponse, error) {
 	}
 
 	apiResp := SayHelloResponse{}
-	if err := json.Unmarshal(body, &resp); err != nil {
+	if err := json.Unmarshal(body, &apiResp); err != nil {
 		return nil, fmt.Errorf("unmarshalling response: %w", err)
 	}
 
