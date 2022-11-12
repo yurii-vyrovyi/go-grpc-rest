@@ -6,7 +6,7 @@ message SayHelloRequest {
   string title = 1;
   string description = 2;
   int64 int_value = 3;
-  repeated Attachment attachment = 4;
+  repeated Attachment attachments = 4;
 }
 
 message Attachment {

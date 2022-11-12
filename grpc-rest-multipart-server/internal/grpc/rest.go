@@ -90,7 +90,7 @@ func (s *Server) V2Handler(ec echo.Context) error {
 		apiAttachments = append(apiAttachments, &apiAttachment)
 	}
 
-	apiReq.Attachment = apiAttachments
+	apiReq.Attachments = apiAttachments
 
 	resolverResp, err := s.resolver.SayHello(context.Background(), &apiReq)
 	if err != nil {
