@@ -3,15 +3,15 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/yurii-vyrovyi/grpc-rest-server/internal/grpc"
-	"github.com/yurii-vyrovyi/grpc-rest-server/internal/service"
 	"os"
 	"os/signal"
 	"strings"
 	"syscall"
 
-	"github.com/yurii-vyrovyi/grpc-rest-server/internal/log"
-	"github.com/yurii-vyrovyi/grpc-rest-server/internal/opts"
+	"github.com/yurii-vyrovyi/go-grpc-rest/grpc-rest-server/internal/grpc"
+	"github.com/yurii-vyrovyi/go-grpc-rest/grpc-rest-server/internal/log"
+	"github.com/yurii-vyrovyi/go-grpc-rest/grpc-rest-server/internal/opts"
+	"github.com/yurii-vyrovyi/go-grpc-rest/grpc-rest-server/internal/service"
 
 	logger "github.com/sirupsen/logrus"
 )

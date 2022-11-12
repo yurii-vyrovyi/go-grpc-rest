@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/yurii-vyrovyi/grpc-rest-server/api"
-	_ "github.com/yurii-vyrovyi/grpc-rest-server/internal/docs"
+	"github.com/yurii-vyrovyi/go-grpc-rest/grpc-rest-server/api"
+	_ "github.com/yurii-vyrovyi/go-grpc-rest/grpc-rest-server/internal/docs"
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	httpSwagger "github.com/swaggo/http-swagger"
