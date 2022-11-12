@@ -27,7 +27,7 @@ func NewResolver(svc Service) (*Resolver, error) {
 
 func (r *Resolver) SayHello(ctx context.Context, req *api.SayHelloRequest) (*api.SayHelloResponse, error) {
 
-	attachments := FromApiAttachments(req.Attachment)
+	attachments := FromApiAttachments(req.Attachments)
 
 	resp, err := r.svc.ReactOnHello(ctx, req.Title, req.Description, int(req.IntValue), attachments)
 	if err != nil {
