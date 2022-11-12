@@ -40,7 +40,7 @@ func (svc *Service) ReactOnHello(
 	logger.Debugf("service got a Hello request: %v", title)
 
 	var resErr error
-	savedFiles := make([]string, len(attachments))
+	savedFiles := make([]string, 0, len(attachments))
 
 	for _, at := range attachments {
 
@@ -54,7 +54,10 @@ func (svc *Service) ReactOnHello(
 		err := os.WriteFile(fullFileName, at.FileData, 0600)
 		if err != nil {
 			resErr = multierror.Append(resErr, fmt.Errorf("failed to create file: %w", err))
+			continue
 		}
+
+		savedFiles = append(savedFiles, at.FileName)
 	}
 
 	if resErr != nil {
