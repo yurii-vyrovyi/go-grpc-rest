@@ -1,4 +1,4 @@
-module github.com/yurii-vyrovyi/grpc-rest-server
+module github.com/yurii-vyrovyi/go-grpc-rest/grpc-rest-server
 
 go 1.19
 

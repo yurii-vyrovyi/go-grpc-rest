@@ -1,5 +1,5 @@
 syntax = "proto3";
-option go_package = "github.com/yurii-vyrovyi/grpc-rest-server;api";
+option go_package = "github.com/yurii-vyrovyi/go-grpc-rest/grpc-rest-server;api";
 package grpc_rest.v1;
 
 message SayHelloRequest {

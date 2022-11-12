@@ -3,12 +3,12 @@ package opts
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/yurii-vyrovyi/grpc-rest-server/internal/service"
 	"gopkg.in/yaml.v3"
 	"os"
 
-	"github.com/yurii-vyrovyi/grpc-rest-server/internal/grpc"
-	"github.com/yurii-vyrovyi/grpc-rest-server/internal/log"
+	"github.com/yurii-vyrovyi/go-grpc-rest/grpc-rest-server/internal/grpc"
+	"github.com/yurii-vyrovyi/go-grpc-rest/grpc-rest-server/internal/log"
+	"github.com/yurii-vyrovyi/go-grpc-rest/grpc-rest-server/internal/service"
 
 	"github.com/go-playground/validator/v10"
 	"github.com/hashicorp/go-multierror"

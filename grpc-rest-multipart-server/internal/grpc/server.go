@@ -13,8 +13,8 @@ import (
 	"net/http/httputil"
 	"time"
 
-	"github.com/yurii-vyrovyi/grpc-rest-server/api"
-	_ "github.com/yurii-vyrovyi/grpc-rest-server/internal/docs"
+	"github.com/yurii-vyrovyi/go-grpc-rest/grpc-rest-server/api"
+	_ "github.com/yurii-vyrovyi/go-grpc-rest/grpc-rest-server/internal/docs"
 
 	logger "github.com/sirupsen/logrus"
 	echoSwagger "github.com/swaggo/echo-swagger"

@@ -3,7 +3,7 @@ package grpc
 import (
 	"context"
 
-	"github.com/yurii-vyrovyi/grpc-rest-server/api"
+	"github.com/yurii-vyrovyi/go-grpc-rest/grpc-rest-server/api"
 
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
