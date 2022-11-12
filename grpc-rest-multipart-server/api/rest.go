@@ -4,12 +4,14 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"mime/multipart"
 	"net/http"
 	"net/textproto"
 	"net/url"
+	"strconv"
 	"time"
 )
 
@@ -27,31 +29,31 @@ const (
 	EndpointV2SayHello = "/v2/sayhello"
 )
 
-func (c *RestApiClient) SendHello(_ context.Context, req *SayHelloRequest) error {
+func (c *RestApiClient) SendHello(_ context.Context, req *SayHelloRequest) (*SayHelloResponse, error) {
 
 	u, err := url.JoinPath(c.Host, EndpointV2SayHello)
 	if err != nil {
-		return fmt.Errorf("compiling endpoint [%s] [%s]", c.Host, EndpointV2SayHello)
+		return nil, fmt.Errorf("compiling endpoint [%s] [%s]", c.Host, EndpointV2SayHello)
 	}
 
 	buf := bytes.Buffer{}
 	mpw := multipart.NewWriter(&buf)
 
 	if errObjectPart := createObjectPart(req, mpw); errObjectPart != nil {
-		return fmt.Errorf("creating object part: %w", errObjectPart)
+		return nil, fmt.Errorf("creating object part: %w", errObjectPart)
 	}
 
 	if errFileParts := createFileParts(req.Attachments, mpw); errFileParts != nil {
-		return fmt.Errorf("creating file part: %w", errFileParts)
+		return nil, fmt.Errorf("creating file part: %w", errFileParts)
 	}
 
 	if errClose := mpw.Close(); errClose != nil {
-		return fmt.Errorf("closing multipart writer: %w", errClose)
+		return nil, fmt.Errorf("closing multipart writer: %w", errClose)
 	}
 
 	httpRequest, err := http.NewRequest("POST", u, &buf)
 	if err != nil {
-		return fmt.Errorf("creating new request: %w", err)
+		return nil, fmt.Errorf("creating new request: %w", err)
 	}
 
 	httpRequest.Header.Set("Content-Type", mpw.FormDataContentType())
@@ -60,14 +62,19 @@ func (c *RestApiClient) SendHello(_ context.Context, req *SayHelloRequest) error
 
 	resp, err := client.Do(httpRequest)
 	if err != nil {
-		return fmt.Errorf("sending request: %w", err)
+		return nil, fmt.Errorf("sending request: %w", err)
 	}
 
 	if resp.StatusCode != http.StatusCreated {
-		return fmt.Errorf("bad request response: %v [%v]", resp.Status, resp.StatusCode)
+		return nil, fmt.Errorf("bad request response: %v [%v]", resp.Status, resp.StatusCode)
 	}
 
-	return nil
+	apiResp, err := handleResponse(resp)
+	if err != nil {
+		return nil, fmt.Errorf("handling http response: %w", err)
+	}
+
+	return apiResp, nil
 }
 
 func createObjectPart(req *SayHelloRequest, mpw *multipart.Writer) error {
@@ -120,4 +127,29 @@ func createFileParts(attachments []*Attachment, mpw *multipart.Writer) error {
 	}
 
 	return nil
+}
+
+func handleResponse(resp *http.Response) (*SayHelloResponse, error) {
+
+	bodyReader := resp.Body
+	defer func() { _ = bodyReader.Close() }()
+
+	strLen := resp.Header.Get("Content-Length")
+	l, err := strconv.ParseInt(strLen, 10, 64)
+	if err != nil {
+		l = 4096
+	}
+
+	body := make([]byte, l)
+	_, err = bodyReader.Read(body)
+	if err != nil && !errors.Is(err, io.EOF) {
+		return nil, fmt.Errorf("reading body: %w", err)
+	}
+
+	apiResp := SayHelloResponse{}
+	if err := json.Unmarshal(body, &resp); err != nil {
+		return nil, fmt.Errorf("unmarshalling response: %w", err)
+	}
+
+	return &apiResp, nil
 }
