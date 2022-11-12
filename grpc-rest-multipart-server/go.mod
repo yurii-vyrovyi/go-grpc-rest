@@ -1,4 +1,4 @@
-module github.com/yurii-vyrovyi/go-grpc-rest/grpc-rest-server
+module github.com/yurii-vyrovyi/go-grpc-rest/grpc-rest-multipart-server
 
 go 1.19
 
@@ -6,6 +6,7 @@ require (
 	github.com/go-playground/validator/v10 v10.11.1
 	github.com/hashicorp/go-multierror v1.1.1
 	github.com/kelseyhightower/envconfig v1.4.0
+	github.com/labstack/echo/v4 v4.9.1
 	github.com/sirupsen/logrus v1.9.0
 	github.com/swaggo/echo-swagger v1.3.5
 	github.com/swaggo/swag v1.8.7
@@ -26,7 +27,6 @@ require (
 	github.com/google/go-cmp v0.5.9 // indirect
 	github.com/hashicorp/errwrap v1.0.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
-	github.com/labstack/echo/v4 v4.9.1 // indirect
 	github.com/labstack/gommon v0.4.0 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect

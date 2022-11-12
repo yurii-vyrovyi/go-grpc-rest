@@ -6,9 +6,9 @@ import (
 	"gopkg.in/yaml.v3"
 	"os"
 
-	"github.com/yurii-vyrovyi/go-grpc-rest/grpc-rest-server/internal/grpc"
-	"github.com/yurii-vyrovyi/go-grpc-rest/grpc-rest-server/internal/log"
-	"github.com/yurii-vyrovyi/go-grpc-rest/grpc-rest-server/internal/service"
+	"github.com/yurii-vyrovyi/go-grpc-rest/grpc-rest-multipart-server/internal/grpc"
+	"github.com/yurii-vyrovyi/go-grpc-rest/grpc-rest-multipart-server/internal/log"
+	"github.com/yurii-vyrovyi/go-grpc-rest/grpc-rest-multipart-server/internal/service"
 
 	"github.com/go-playground/validator/v10"
 	"github.com/hashicorp/go-multierror"

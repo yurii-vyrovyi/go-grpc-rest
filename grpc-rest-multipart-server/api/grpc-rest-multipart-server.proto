@@ -1,11 +1,15 @@
 syntax = "proto3";
-option go_package = "github.com/yurii-vyrovyi/go-grpc-rest/grpc-rest-server;api";
+option go_package = "github.com/yurii-vyrovyi/go-grpc-rest/grpc-rest-multipart-server;api";
 package grpc_rest.v2;
 
 message SayHelloRequest {
   string title = 1;
   string description = 2;
   int64 int_value = 3;
+  repeated Attachment attachment = 4;
+}
+
+message Attachment {
   string file_name = 4;
   bytes binary_data = 5;
 }
@@ -14,7 +18,7 @@ message SayHelloResponse {
   string response = 1;
 }
 
-service GrpcRestService {
+service GrpcRestMultipartService {
   rpc SayHello(SayHelloRequest) returns (SayHelloResponse);
 }
 
