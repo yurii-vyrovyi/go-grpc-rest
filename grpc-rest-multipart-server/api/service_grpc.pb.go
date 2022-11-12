@@ -35,7 +35,7 @@ func NewGrpcRestServiceClient(cc grpc.ClientConnInterface) GrpcRestServiceClient
 
 func (c *grpcRestServiceClient) SayHello(ctx context.Context, in *SayHelloRequest, opts ...grpc.CallOption) (*SayHelloResponse, error) {
 	out := new(SayHelloResponse)
-	err := c.cc.Invoke(ctx, "/grpc_rest.v1.GrpcRestService/SayHello", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/grpc_rest.v2.GrpcRestService/SayHello", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -80,7 +80,7 @@ func _GrpcRestService_SayHello_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/grpc_rest.v1.GrpcRestService/SayHello",
+		FullMethod: "/grpc_rest.v2.GrpcRestService/SayHello",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(GrpcRestServiceServer).SayHello(ctx, req.(*SayHelloRequest))
@@ -92,7 +92,7 @@ func _GrpcRestService_SayHello_Handler(srv interface{}, ctx context.Context, dec
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var GrpcRestService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "grpc_rest.v1.GrpcRestService",
+	ServiceName: "grpc_rest.v2.GrpcRestService",
 	HandlerType: (*GrpcRestServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

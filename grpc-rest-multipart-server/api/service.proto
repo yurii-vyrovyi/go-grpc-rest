@@ -1,6 +1,6 @@
 syntax = "proto3";
 option go_package = "github.com/yurii-vyrovyi/go-grpc-rest/grpc-rest-server;api";
-package grpc_rest.v1;
+package grpc_rest.v2;
 
 message SayHelloRequest {
   string title = 1;
@@ -13,16 +13,6 @@ message SayHelloRequest {
 message SayHelloResponse {
   string response = 1;
 }
-
-//service GrpcRestServer {
-//  rpc SayHello(HelloRequest) returns (HelloResponse){
-//    option (google.api.http) = {
-//      post: "/v1/sayhello"
-//      body: "*"
-//    };
-//  }
-//}
-//
 
 service GrpcRestService {
   rpc SayHello(SayHelloRequest) returns (SayHelloResponse);
