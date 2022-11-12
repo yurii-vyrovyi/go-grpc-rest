@@ -1,0 +1,19 @@
+log:
+  level: debug
+  pretty: false
+  non-json: true
+
+service:
+  type: restV2
+  data-files:
+    - /home/yvyrovyi/work/go-blue.svg
+    - /home/yvyrovyi/work/MeMyself.jpg
+
+
+grpc:
+  host: localhost:8080
+  timeout: 15s
+
+rest:
+  url: http://localhost:8090
+  say-hello-endpoint: /v2/sayhello
